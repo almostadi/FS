@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Financial Statements of Companies — Unit 1 Mind Map</title>
+<style>
+  :root{
+    --bg: #0a0c0f;
+    --node-d0: #4a5568;
+    --node-d0-border: #6b7688;
+    --node-d1: #454f5e;
+    --node-d1-border: #64708a;
+    --node-d2: #2f4a3b;
+    --node-d2-border: #4f7a5f;
+    --node-d3: #3c5a48;
+    --node-d3-border: #63977a;
+    --node-d4: #4a3c5a;
+    --node-d4-border: #8563a0;
+    --text-cool: #eef2f5;
+    --text-green: #dcf2e3;
+    --text-purple: #ece2f5;
+    --line-blue: #a9c0ea;
+    --line-green: #8fd6a8;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin:0; padding:0;
+    background: var(--bg);
+    color: var(--text-cool);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  #scrollArea {
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    padding: 60px 80px 100px 40px;
+  }
+  #wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  svg#connectors {
+    position: absolute;
+    top: 0; left: 0;
+    pointer-events: none;
+    overflow: visible;
+  }
+  .branch {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .branch > .children {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    margin-left: 60px;
+  }
+  .node {
+    position: relative;
+    z-index: 2;
+    padding: 9px 18px;
+    border-radius: 9px;
+    font-size: 13.5px;
+    line-height: 1.35;
+    white-space: nowrap;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04);
+    letter-spacing: 0.1px;
+  }
+  .d0 > .node {
+    background: linear-gradient(180deg, #545f70, var(--node-d0));
+    border: 1px solid var(--node-d0-border);
+    color: var(--text-cool);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 12px 22px;
+  }
+  .d1 > .node {
+    background: linear-gradient(180deg, #4f596a, var(--node-d1));
+    border: 1px solid var(--node-d1-border);
+    color: var(--text-cool);
+    font-weight: 600;
+  }
+  .d2 > .node {
+    background: linear-gradient(180deg, #375540, var(--node-d2));
+    border: 1px solid var(--node-d2-border);
+    color: var(--text-green);
+  }
+  .d3 > .node {
+    background: linear-gradient(180deg, #46664f, var(--node-d3));
+    border: 1px solid var(--node-d3-border);
+    color: var(--text-green);
+    font-size: 12.8px;
+    padding: 7px 15px;
+  }
+  .d4 > .node {
+    background: linear-gradient(180deg, #5a4a70, var(--node-d4));
+    border: 1px solid var(--node-d4-border);
+    color: var(--text-purple);
+    font-size: 12px;
+    padding: 6px 13px;
+    white-space: normal;
+    max-width: 260px;
+  }
+  #title {
+    color: #8b95a3;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 0 0 28px 4px;
+  }
+  #subtitle {
+    color: #6b7688;
+    font-size: 11px;
+    margin: -22px 0 26px 4px;
+  }
+</style>
+</head>
+<body>
+<div id="scrollArea">
+  <div id="title">Chapter 11 · Unit 1 — Advanced Accounting (CA Inter)</div>
+  <div id="subtitle">Scroll horizontally / vertically to explore. Blue lines = top level, Green lines = sub-branches.</div>
+  <div id="wrapper">
+    <svg id="connectors"></svg>
+    <div id="tree"></div>
+  </div>
+</div>
+
+<script>
+const data = {
+  title: "Preparation of Financial Statements",
+  children: [
+    {
+      title: "1.1 Meaning of Company & Types",
+      children: [
+        { title: "Company — Sec 2(20)" },
+        { title: "Limited by Guarantee — 2(21)" },
+        { title: "Limited by Shares — 2(22)" },
+        { title: "Foreign Company — 2(42)" },
+        { title: "Government Company — 2(45): ≥51% paid-up capital by Govt(s)" },
+        { title: "One Person Company — 2(62)" },
+        {
+          title: "Private Company — 2(68)",
+          children: [
+            { title: "Restricts share transfer" },
+            { title: "Members limited to 200 (joint holders = 1 member)" },
+            { title: "Employee/ex-employee members excluded from count" },
+            { title: "Prohibits public invitation for securities" }
+          ]
+        },
+        {
+          title: "Public Company — 2(71)",
+          children: [
+            { title: "Not a private company + prescribed min. paid-up capital" },
+            { title: "Subsidiary of a public co. deemed public even if private in articles" }
+          ]
+        },
+        {
+          title: "Small Company — 2(85)",
+          children: [
+            { title: "Paid-up capital ≤ ₹4 crore (as amended)" },
+            { title: "Turnover ≤ ₹40 crore (as amended)" },
+            { title: "Excludes: holding/subsidiary, Sec 8 co., special Act co." }
+          ]
+        },
+        { title: "Unlimited Company — 2(92)" },
+        { title: "Holding Company — 2(46)" },
+        {
+          title: "Subsidiary Company — 2(87)",
+          children: [
+            { title: "Controls Board composition, OR" },
+            { title: "Controls > 1/2 total share capital (alone/with subsidiaries)" },
+            { title: "Layers of subsidiaries may be restricted (prescribed)" }
+          ]
+        },
+        {
+          title: "Small & Medium Sized Company (SMC)",
+          children: [
+            { title: "Securities not listed / not in process of listing" },
+            { title: "Not a bank, FI or insurance company" },
+            { title: "Turnover (excl. other income) ≤ ₹250 crore" },
+            { title: "Borrowings ≤ ₹50 crore" },
+            { title: "Not holding/subsidiary of a non-SMC company" }
+          ]
+        }
+      ]
+    },
+    {
+      title: "1.2 Maintenance of Books of Account (Sec 128)",
+      children: [
+        {
+          title: "General Rule",
+          children: [
+            { title: "Kept at Registered Office" },
+            { title: "Accrual basis + Double entry system" },
+            { title: "For every financial year, incl. branch transactions" },
+            { title: "True & fair view of state of affairs" },
+            { title: "Retention: not less than 8 financial years" },
+            { title: "Open for director inspection during business hours" }
+          ]
+        },
+        {
+          title: "Place other than Registered Office",
+          children: [
+            { title: "Board decision → intimate ROC within 7 days" }
+          ]
+        },
+        {
+          title: "Branch Office",
+          children: [
+            { title: "Proper books kept at branch" },
+            { title: "Periodic summarised returns sent to Registered Office" }
+          ]
+        },
+        {
+          title: "Electronic Mode",
+          children: [
+            { title: "Accessible in India at all times" },
+            { title: "Audit trail mandatory for accounting software (FY 2022-23 onward)" },
+            { title: "Edit log of every change + cannot be disabled" },
+            { title: "Daily back-up on servers physically in India" },
+            { title: "Annual intimation to ROC: service provider name, IP address, location, cloud address" },
+            { title: "Records retained in original/legible, unaltered format" }
+          ]
+        }
+      ]
+    },
+    {
+      title: "1.3 Statutory Books",
+      children: [
+        { title: "Register of Investments — Sec 187" },
+        { title: "Register of Charges — Sec 85" },
+        { title: "Register of Members — Sec 88" },
+        { title: "Register of Debenture-holders & other security holders — Sec 88" },
+        { title: "Minute Books — Sec 118" },
+        { title: "Register of Contracts (director interest) — Sec 189" },
+        { title: "Register of Directors & KMP — Sec 170" },
+        { title: "Register of Loans & Investments — Sec 186" },
+        {
+          title: "Share Issue Registers (statistical)",
+          children: [
+            { title: "Share Application & Allotment Book" },
+            { title: "Share Call Book" },
+            { title: "Certificate Book" },
+            { title: "Share Transfer Book" },
+            { title: "Dividend Register" }
+          ]
+        }
+      ]
+    },
+    {
+      title: "1.4 Annual Return (Sec 92)",
+      children: [
+        { title: "Signed by Director + Company Secretary (or CS in practice if none)" },
+        { title: "OPC / Small Co.: signed by CS, or Director if no CS" },
+        { title: "Filed with Registrar within 60 days of AGM" },
+        { title: "If no AGM held: within 60 days of date AGM should've been held, with reasons statement" }
+      ]
+    },
+    {
+      title: "1.5 Final Accounts (Sec 129)",
+      children: [
+        {
+          title: "Financial Statement Components — Sec 2(40)",
+          children: [
+            { title: "Balance Sheet" },
+            { title: "P&L Account (or Income & Expenditure A/c for not-for-profit)" },
+            { title: "Cash Flow Statement" },
+            { title: "Statement of Changes in Equity (if applicable)" },
+            { title: "Explanatory Notes" },
+            { title: "Exemption: OPC, Small Co., Dormant Co., start-up Pvt Co. — Cash Flow not mandatory" }
+          ]
+        },
+        {
+          title: "Periodic Financial Statements",
+          children: [
+            { title: "Central Govt. may prescribe for unlisted companies" },
+            { title: "Board approval + audit/limited review" },
+            { title: "File with Registrar within 30 days of period completion" }
+          ]
+        },
+        {
+          title: "Provisions Applicable",
+          children: [
+            { title: "Specific Act (insurance, banking, electricity, etc.) — that Act's format" },
+            { title: "All other companies — Schedule III format" }
+          ]
+        },
+        {
+          title: "Schedule III Structure",
+          children: [
+            { title: "Division I — AS-based companies" },
+            { title: "Division II — Ind AS-based companies" },
+            { title: "Division III — NBFCs (Ind AS)" }
+          ]
+        },
+        {
+          title: "Points while Preparing Final Accounts",
+          children: [
+            { title: "Requirements of Schedule III" },
+            { title: "Other statutory requirements" },
+            { title: "Accounting Standards notified by MCA (AS 1–29; AS 6 & 8 withdrawn)" },
+            { title: "ICAI Statements & Guidance Notes" }
+          ]
+        },
+        { title: "Sec 133: mandatory compliance with notified Accounting Standards" }
+      ]
+    },
+    {
+      title: "1.6 Distributable Profit & Dividend",
+      children: [
+        {
+          title: "Meaning of Dividend",
+          children: [
+            { title: "Distribution of divisible profit among members per shareholding" },
+            { title: "Includes interim dividend — Sec 2(35)" },
+            { title: "Bonus shares = capitalisation of profit, not release of assets" }
+          ]
+        },
+        {
+          title: "Conditions for Declaration — Sec 123(1)",
+          children: [
+            { title: "Out of current year profit after depreciation (123(2))" },
+            { title: "Out of past years' undistributed profit after depreciation" },
+            { title: "Out of both" },
+            { title: "Out of money provided by Govt. under guarantee" },
+            { title: "Only free reserves can be used" }
+          ]
+        },
+        {
+          title: "Declaration out of Reserves (Rules, 2014)",
+          children: [
+            { title: "Rate ≤ average rate of preceding 3 years" },
+            { title: "Amount drawn ≤ 10% of (paid-up capital + free reserves)" },
+            { title: "First set off current year losses" },
+            { title: "Balance of reserves after draw ≥ 15% of paid-up capital" },
+            { title: "Carried-over past losses/unprovided depreciation set off first" }
+          ]
+        },
+        {
+          title: "Transfer to Reserves",
+          children: [
+            { title: "Board's discretion — Sec 123(1)" },
+            { title: "Sometimes mandatory by law (e.g. Banking Regulation Act)" },
+            { title: "May be required by loan covenant" }
+          ]
+        },
+        {
+          title: "Declaration of Dividend — Sec 123",
+          children: [
+            { title: "Interim dividend loss-year cap: not > avg of preceding 3 years" },
+            { title: "Deposit in scheduled bank within 5 days of declaration" },
+            { title: "Payable only in cash (cheque/warrant/electronic mode)" },
+            { title: "Paid only to registered shareholder / order / banker" }
+          ]
+        },
+        {
+          title: "Dividend on Preference & Partly-paid Shares",
+          children: [
+            { title: "Preference dividend at fixed rate, priority over equity" },
+            { title: "Partly-paid: dividend in proportion to amount paid, if authorised by Articles — Sec 51" },
+            { title: "Calls-in-advance do not rank for dividend" }
+          ]
+        },
+        {
+          title: "Payment of Dividend — Sec 124",
+          children: [
+            { title: "Unpaid/unclaimed after 30 days → Unpaid Dividend A/c within 7 days" },
+            { title: "Statement of unpaid dividends on website within 90 days" },
+            { title: "Default interest: 12% p.a." },
+            { title: "Unpaid for 7 years → transfer to Investor Education & Protection Fund" },
+            { title: "Related shares also transferred to IEPF, reclaimable per procedure" },
+            { title: "Non-compliance penalty: company ₹5–25 lakh; officer ₹1–5 lakh" }
+          ]
+        },
+        { title: "Note: Final dividend recommended after year-end is NOT a liability at balance sheet date — disclosed in notes only (per AS)" }
+      ]
+    }
+  ]
+};
+
+function renderNode(node, depth) {
+  const branch = document.createElement('div');
+  branch.className = 'branch d' + depth;
+
+  const box = document.createElement('div');
+  box.className = 'node';
+  box.textContent = node.title;
+  branch.appendChild(box);
+
+  if (node.children && node.children.length) {
+    const childrenWrap = document.createElement('div');
+    childrenWrap.className = 'children';
+    node.children.forEach(child => {
+      childrenWrap.appendChild(renderNode(child, Math.min(depth + 1, 4)));
+    });
+    branch.appendChild(childrenWrap);
+  }
+  return branch;
+}
+
+const treeEl = document.getElementById('tree');
+treeEl.appendChild(renderNode(data, 0));
+
+function drawConnectors() {
+  const svg = document.getElementById('connectors');
+  const wrapper = document.getElementById('wrapper');
+  svg.innerHTML = '';
+
+  const wrapperRect = wrapper.getBoundingClientRect();
+  const w = wrapper.scrollWidth;
+  const h = wrapper.scrollHeight;
+  svg.setAttribute('width', w);
+  svg.setAttribute('height', h);
+  svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+
+  document.querySelectorAll('.branch').forEach(branch => {
+    const node = branch.querySelector(':scope > .node');
+    const childrenWrap = branch.querySelector(':scope > .children');
+    if (!childrenWrap) return;
+
+    const nodeRect = node.getBoundingClientRect();
+    const startX = nodeRect.right - wrapperRect.left;
+    const startY = nodeRect.top + nodeRect.height / 2 - wrapperRect.top;
+
+    const depth = [...branch.classList].find(c => c.startsWith('d')).slice(1);
+    const color = depth === '0' ? 'var(--line-blue)' : 'var(--line-green)';
+
+    const childBranches = childrenWrap.querySelectorAll(':scope > .branch');
+    childBranches.forEach(childBranch => {
+      const childNode = childBranch.querySelector(':scope > .node');
+      const cRect = childNode.getBoundingClientRect();
+      const endX = cRect.left - wrapperRect.left;
+      const endY = cRect.top + cRect.height / 2 - wrapperRect.top;
+
+      const midX = (startX + endX) / 2;
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      const d = `M ${startX} ${startY} C ${midX} ${startY}, ${midX} ${endY}, ${endX} ${endY}`;
+      path.setAttribute('d', d);
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', color);
+      path.setAttribute('stroke-width', '1.4');
+      path.setAttribute('opacity', '0.8');
+      svg.appendChild(path);
+    });
+
+    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circle.setAttribute('cx', startX);
+    circle.setAttribute('cy', startY);
+    circle.setAttribute('r', '3');
+    circle.setAttribute('fill', '#0a0c0f');
+    circle.setAttribute('stroke', color);
+    circle.setAttribute('stroke-width', '1.2');
+    svg.appendChild(circle);
+  });
+}
+
+function redraw() {
+  requestAnimationFrame(() => requestAnimationFrame(drawConnectors));
+}
+
+window.addEventListener('load', redraw);
+window.addEventListener('resize', redraw);
+redraw();
+</script>
+</body>
+</html>
